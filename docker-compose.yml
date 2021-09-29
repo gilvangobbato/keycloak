@@ -2,6 +2,25 @@ version: '3.8'
 
 services:
 
+  keycloak:
+    container_name: keycloak_box
+    image: jboss/keycloak:15.0.2
+    ports:
+      - 8180:8080
+    environment:
+      PROXY_ADDRESS_FORWARDING: "true"
+      DB_VENDOR: mariadb
+      DB_ADDR: mariadb
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: 123456
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin123
+    depends_on:
+      - mariadb
+    networks:
+      - box_key_network
+
   mariadb:
     container_name: maria-db
     image: mariadb:10.6.4-focal
@@ -11,16 +30,16 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 123456
       MYSQL_DATABASE: keycloak
-      MYSQL_USER: user
+      MYSQL_USER: keycloak
       MYSQL_PASSWORD: 123456
     volumes: 
       - mariadb_data:/var/lib/mysql
     networks:
       - box_key_network
 
-networks:
-  box_key_network: {}
-
 volumes: 
   mariadb_data:
     driver: local
+
+networks:
+  box_key_network: {}
