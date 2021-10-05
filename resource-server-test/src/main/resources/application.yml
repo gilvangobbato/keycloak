@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: De Bona Transportes
+    description: Software para gerenciamento da empresa
+
+keycloak:
+  realm: KeycloakWorld
+  auth-server-url: http://localhost:8180/auth
+  ssl-required: external
+  resource: cliente-teste
+  credentials:
+    secret: 9b19be1c-018a-4b4f-89bb-58f227acb9c3
+  use-resource-role-mappings: true
+  bearer-only: true
