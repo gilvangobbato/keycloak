@@ -12,3 +12,9 @@ keycloak:
     secret: 9b19be1c-018a-4b4f-89bb-58f227acb9c3
   use-resource-role-mappings: true
   bearer-only: true
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

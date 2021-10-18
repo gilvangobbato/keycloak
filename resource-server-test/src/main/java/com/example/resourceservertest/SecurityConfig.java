@@ -22,17 +22,16 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
-@EnableWebSecurity
-//@EnableGlobalMethodSecurity(jsr250Enabled = true)
-@ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
+@EnableWebSecurity(debug = true)
+@EnableGlobalMethodSecurity(jsr250Enabled = true)
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests()
-                .antMatchers("/api/user*").hasRole("USER")
-                .antMatchers("/api/admin*").hasRole("ADMIN")
+//                .antMatchers("/api/user*").hasRole("USER")
+//                .antMatchers("/api/admin*").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and().cors().and().csrf().disable();
     }
